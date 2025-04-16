@@ -4,14 +4,34 @@ title: Level Up Your State Management with Immer
 info: |
   Tired of endless .map, .filter, and deeply nested spread operators?
   In this lightning talk, I’ll show you how Immer makes immutable state management intuitive and easy to read.
+---
+
+# Michèle Legait
+
+Senior Frontend Developer
+
+<img src="/images/avatar.jpeg" style="width: 200px; height: 200px;" >
+
+<img src="/images/datadog.png" style="width: 200px;" >
+
+<!--
+FR: Je m'appelle Michèle Legait, je suis Développeuse Senior Frontend chez Datadog et j'aimerais vous raconter une histoire.
+
+EN: My name is Michèle Legait, I'm a Senior Frontend Developer at Datadog and I would like to tell you a story.
+-->
+
+---
 layout: image
 image: images/landscape.webp
 backgroundSize: cover
-# apply unocss classes to the current slide
-class: text-center
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
 transition: fade
 ---
+
+<!--
+FR: Au fil des années passées en tant que développeuse frontend, j'ai arpenté les contrées de React et de Redux.
+
+EN: Over the years as a frontend developer, I have travelled across the lands of React and Redux.
+-->
 
 ---
 layout: image
@@ -19,35 +39,41 @@ image: images/landscape_React_Redux.png
 backgroundSize: cover
 ---
 
-<!--
-Presenter notes (needs to be at the end)
--->
-
 ---
 layout: image-right
-image: images/orc.webp
+image: images/aria.webp
 ---
 
 # Immutable state
 
 <div v-click>
-Change detection easy, predictable, and powerful.
+Change detection easy and predictable.
 
 ```ts
 if (oldState !== newState) {
-  // Something changed → let's re-render!
+  // Something changed
+  //   → React: let's re-render!
+  //   → Redux: let's notify the listeners
 }
 ```
 
 </div>
 
 <div v-click>
-Enables powerful features:
+Enables powerful DevTools features:
 
+- Compare before/after
 - Undo/Redo
 - Time-travel debugging
-- DevTools magic
 </div>
+
+<!--
+FR: Et lors de mes nombreuses quêtes, je me suis souvent retrouvée face à un ancien et puissant principe : l'immutable state.
+[...] Grâce à l'immutable state... débugger devient presque magique.
+
+EN: And throughout my many quests, I have often found myself facing an ancient and powerful principle: immutable state.
+[...] Thanks to immutable state... debugging can feel almost like magic.
+-->
 
 ---
 layout: image-right
@@ -91,6 +117,12 @@ image: images/standard_weapon.webp
 
 ...
 
+<!--
+FR: Pendant longtemps, mon arme principale pour relever le défi de l'immutable state... c'était le spread operator. Une lame qui demandait patience et précision.
+
+EN: For a long time, my main weapon to face the challenge of immutable state... was the spread operator. A blade that required patience and precision.
+-->
+
 ---
 layout: image-right
 image: images/standard_weapon.webp
@@ -131,6 +163,12 @@ const newState = {
 };
 ```
 
+<!--
+FR: Mais au fond de moi, je savais que cette fidèle lame était loin d’être l’arme ultime...
+
+EN: But deep down, I knew that this trusty blade was far from being the ultimate weapon...
+-->
+
 ---
 layout: image-right
 image: images/awesome_weapon.webp
@@ -148,6 +186,20 @@ image: images/awesome_weapon.webp
 
 <div v-click>2016</div>
 
+<!--
+FR: Et puis, il y a quelques mois, j'ai rejoint une nouvelle guilde : Datadog.
+Et là, au détour d'une discussion, ils m'ont fait découvrir une arme incroyable... une relique ancienne... un artefact légendaire : Immer.
+Cette arme est légère — à peine 4,7kB.
+Elle est maniable — une seule fonction à maîtriser : produce.
+Et surtout, elle est robuste — forgée en 2016 et toujours maintenue.
+
+EN: And then, a few months ago, I joined a new guild: Datadog.
+And there, in the middle of a conversation, they showed me an incredible weapon... an ancient relic... a legendary artifact: Immer.
+This weapon is light — just 4.7kB.
+It’s easy to wield — with a single function to master: produce.
+And above all, it’s reliable and proven — forged in 2016, still maintained, still sharp.
+-->
+
 ---
 layout: image
 image: images/immer-schema.png
@@ -155,9 +207,9 @@ backgroundSize: contain
 ---
 
 <!--
-The basic idea is that with Immer you will apply all your changes to a temporary draft, which is a proxy of the currentState. Once all your mutations are completed, Immer will produce the nextState based on the mutations to the draft state. This means that you can interact with your data by simply modifying it while keeping all the benefits of immutable data.
+FR: Le principe de base d'Immer est simple : vous appliquez toutes vos modifications sur un brouillon temporaire (draft), qui est un proxy de votre currentState. Une fois toutes les mutations terminées, Immer va produire un nouveau nextState basé sur les modifications apportées au draft. Cela vous permet de manipuler vos données comme si elles étaient mutables, tout en conservant tous les avantages d’un state immuable.
 
-Immer uses a Proxy to let you write mutable code... while producing an immutable result.
+EN: The basic idea is that with Immer you will apply all your changes to a temporary draft, which is a proxy of the currentState. Once all your mutations are completed, Immer will produce the nextState based on the mutations to the draft state. This means that you can interact with your data by simply modifying it while keeping all the benefits of immutable data.
 -->
 
 ---
@@ -317,6 +369,10 @@ const newState = produce(gameState, (draft) => {
 });
 ```
 
+<!--
+EN: She uses 2 health potions
+-->
+
 ---
 layout: two-cols
 ---
@@ -373,6 +429,10 @@ const newState = produce(gameState, (draft) => {
   }
 });
 ```
+
+<!--
+EN: Her sword loses 10 durability points
+-->
 
 ---
 layout: two-cols
@@ -431,6 +491,10 @@ const newState = produce(gameState, (draft) => {
 });
 ```
 
+<!--
+EN: She equips a new helmet
+-->
+
 ---
 layout: two-cols
 ---
@@ -487,6 +551,10 @@ const newState = produce(gameState, (draft) => {
   }
 });
 ```
+
+<!--
+EN: She takes 15 damage
+-->
 
 ---
 layout: two-cols
@@ -545,8 +613,30 @@ const newState = produce(gameState, (draft) => {
 });
 ```
 
+<!--
+EN: Quest 101 is marked as "in progress"
+-->
+
+---
+
+If there's enough time left. Not mandatory at all.
+
+use-immer lib
+
+useState + Immer = useImmer
+
+useReducer + Immer = useImmerReducer
+
+Redux + Immer = just use produce
+
 ---
 layout: image
 image: images/final_artifact.webp
 backgroundSize: cover
 ---
+
+<!--
+FR: Voilà, vous connaissez mon arme secrète. Maintenant c'est à vous de jouer.
+
+EN: Now you know my secret weapon. It’s your turn to play.
+-->
