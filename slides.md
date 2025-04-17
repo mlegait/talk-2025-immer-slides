@@ -80,10 +80,8 @@ Enables powerful DevTools features:
 
 <!--
 FR: ... l'immutable state.
-[...] Grâce à l'immutable state... débugger devient presque magique.
 
 EN: ... immutable state.
-[...] Thanks to immutable state... debugging can feel almost like magic.
 -->
 
 ---
@@ -99,7 +97,7 @@ const gameState = {
     level: 5,
     inventory: [
       { id: 1, name: "Health Potion", quantity: 3 },
-      { id: 2, name: "Sword", durability: 75 },
+      { id: 2, name: "Traveler’s Map" },
     ],
     stats: {
       health: 87,
@@ -138,9 +136,9 @@ image: images/standard_weapon.webp
 </div>
 
 <!--
-FR: ... le spread operator. Une lame qui demandait patience et précision.
+FR: ... le spread operator.
 
-EN: ... the spread operator. A blade that required patience and precision.
+EN: ... the spread operator.
 -->
 
 ---
@@ -198,9 +196,9 @@ const newState = {
 </div>
 
 <!--
-FR: Mais au fond de moi, je savais que cette fidèle lame était loin d’être l’arme ultime...
+FR: Mais au fond de moi, je savais que cette lame était loin d’être l’arme ultime...
 
-EN: But deep down, I knew that this trusty blade was far from being the ultimate weapon...
+EN: But deep down, I knew that this blade was far from being the ultimate weapon...
 -->
 
 ---
@@ -232,10 +230,8 @@ Elle est maniable — une seule fonction à maîtriser : produce.
 Et surtout, elle est robuste — forgée en 2016, elle est toujours maintenue.
 
 EN: And then, a few months ago, I joined a new guild: Datadog.
-And there, they showed me an incredible weapon... an ancient relic... a legendary artifact: Immer.
-This weapon is light — just 4.7kB.
-It’s easy to wield — with a single function to master: produce.
-And above all, it’s reliable and proven — forged in 2016, it's still maintained.
+And there, they showed me an incredible weapon: Immer.
+light — easy to wield (with a single function to master: produce) — reliable and proven (forged in 2016, it's still maintained).
 -->
 
 ---
@@ -247,7 +243,7 @@ backgroundSize: contain
 <!--
 FR: Le principe de base d'Immer est simple : vous appliquez toutes vos modifications sur un brouillon temporaire (draft), qui est un proxy de votre currentState. Une fois toutes les mutations terminées, Immer va produire un nouveau nextState basé sur les modifications apportées au draft. Cela vous permet de manipuler vos données comme si elles étaient mutables, tout en conservant tous les avantages d’un state immuable.
 
-EN: The basic idea is that with Immer you will apply all your changes to a temporary draft, which is a proxy of the currentState. Once all your mutations are completed, Immer will produce the nextState based on the mutations to the draft state. This means that you can interact with your data by simply modifying it while keeping all the benefits of immutable data.
+EN: The basic idea is that with Immer you will apply all your changes to a temporary draft, which is a proxy of the currentState. Once all your mutations are completed, Immer will produce the nextState based on the mutations to the draft state. This means that you can simply modify your data while keeping all the benefits of immutable data.
 -->
 
 ---
