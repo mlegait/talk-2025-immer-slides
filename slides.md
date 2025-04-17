@@ -15,9 +15,9 @@ Senior Frontend Developer
 <img src="/images/datadog.png" style="width: 200px;" >
 
 <!--
-FR: Je m'appelle Michèle Legait, je suis Développeuse Senior Frontend chez Datadog et j'aimerais vous raconter une histoire.
+FR: J'aimerais vous raconter une histoire.
 
-EN: My name is Michèle Legait, I'm a Senior Frontend Developer at Datadog and I would like to tell you a story.
+EN: I would like to tell you a story.
 -->
 
 ---
@@ -39,12 +39,20 @@ image: images/landscape_React_Redux.png
 backgroundSize: cover
 ---
 
+<!--
+FR: Et lors de mes nombreuses quêtes, je me suis souvent retrouvée face à un ancien et puissant concept ...
+
+EN: And throughout my many quests, I have often found myself facing an ancient and powerful concept ...
+-->
+
 ---
 layout: image-right
 image: images/aria.webp
 ---
 
 # Immutable state
+
+"Never update an object, always create a new version"
 
 <div v-click>
 Change detection easy and predictable.
@@ -68,10 +76,10 @@ Enables powerful DevTools features:
 </div>
 
 <!--
-FR: Et lors de mes nombreuses quêtes, je me suis souvent retrouvée face à un ancien et puissant principe : l'immutable state.
+FR: ... l'immutable state.
 [...] Grâce à l'immutable state... débugger devient presque magique.
 
-EN: And throughout my many quests, I have often found myself facing an ancient and powerful principle: immutable state.
+EN: ... immutable state.
 [...] Thanks to immutable state... debugging can feel almost like magic.
 -->
 
@@ -108,6 +116,12 @@ const gameState = {
 };
 ```
 
+<!--
+FR: Pendant longtemps, mon arme principale pour gérer les immutable states était ...
+
+EN: For a long time, my main weapon to manage immutable states was ...
+-->
+
 ---
 layout: image-right
 image: images/standard_weapon.webp
@@ -118,9 +132,9 @@ image: images/standard_weapon.webp
 ...
 
 <!--
-FR: Pendant longtemps, mon arme principale pour relever le défi de l'immutable state... c'était le spread operator. Une lame qui demandait patience et précision.
+FR: ... le spread operator. Une lame qui demandait patience et précision.
 
-EN: For a long time, my main weapon to face the challenge of immutable state... was the spread operator. A blade that required patience and precision.
+EN: ... the spread operator. A blade that required patience and precision.
 -->
 
 ---
@@ -139,6 +153,12 @@ const newState = {
   },
 };
 ```
+
+<!--
+FR: ... Dégainons le spread operator ...
+
+EN: ... Let's draw the spread operator ...
+-->
 
 ---
 layout: image-right
@@ -188,16 +208,16 @@ image: images/awesome_weapon.webp
 
 <!--
 FR: Et puis, il y a quelques mois, j'ai rejoint une nouvelle guilde : Datadog.
-Et là, au détour d'une discussion, ils m'ont fait découvrir une arme incroyable... une relique ancienne... un artefact légendaire : Immer.
+Et là, ils m'ont fait découvrir une arme incroyable... une relique ancienne... un artefact légendaire : Immer.
 Cette arme est légère — à peine 4,7kB.
 Elle est maniable — une seule fonction à maîtriser : produce.
-Et surtout, elle est robuste — forgée en 2016 et toujours maintenue.
+Et surtout, elle est robuste — forgée en 2016, elle est toujours maintenue.
 
 EN: And then, a few months ago, I joined a new guild: Datadog.
-And there, in the middle of a conversation, they showed me an incredible weapon... an ancient relic... a legendary artifact: Immer.
+And there, they showed me an incredible weapon... an ancient relic... a legendary artifact: Immer.
 This weapon is light — just 4.7kB.
 It’s easy to wield — with a single function to master: produce.
-And above all, it’s reliable and proven — forged in 2016, still maintained, still sharp.
+And above all, it’s reliable and proven — forged in 2016, it's still maintained.
 -->
 
 ---
@@ -247,13 +267,12 @@ layout: image-right
 image: images/aria-battle.webp
 ---
 
-### Aria goes into battle
+### Aria gets ready for battle
 
-- She uses 2 health potions
+- She uses a health potion
 - She equips a new helmet
-- Her sword loses 10 durability points
-- She takes 15 damage
-- Quest 101 is marked as "in progress"
+- She drops her old boots
+- She finds a rare item that increases her mana
 
 ---
 layout: two-cols
@@ -264,18 +283,23 @@ const newState = {
   ...gameState,
   player: {
     ...gameState.player,
-    inventory: gameState.player.inventory.map((item) => {
-      if (item.name === "Health Potion") {
-        return { ...item, quantity: item.quantity - 2 };
-      } else if (item.name === "Sword") {
-        return { ...item, durability: item.durability - 10 };
-      } else {
-        return item;
-      }
-    }),
+    inventory: [
+      ...gameState.player.inventory
+        .map((item) =>
+          item.name === "Health Potion"
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.name !== "Old Boots"),
+      {
+        id: 3,
+        name: "Phoenix Feather",
+        rarity: "legendary",
+      },
+    ],
     stats: {
       ...gameState.player.stats,
-      health: gameState.player.stats.health - 15,
+      mana: gameState.player.stats.mana + 10
       equipment: {
         ...gameState.player.stats.equipment,
         armor: {
@@ -285,9 +309,6 @@ const newState = {
       },
     },
   },
-  quests: gameState.quests.map((q) =>
-    q.id === 101 ? { ...q, status: "in-progress" } : q,
-  ),
 };
 ```
 
@@ -297,18 +318,18 @@ const newState = {
 const newState = produce(gameState, (draft) => {
   const potion = draft.player.inventory.find((i) => i.name === "Health Potion");
   if (potion) {
-    potion.quantity -= 2;
+    potion.quantity -= 1;
   }
-  const sword = draft.player.inventory.find((i) => i.name === "Sword");
-  if (sword) {
-    sword.durability -= 10;
-  }
-  draft.player.stats.health -= 15;
   draft.player.stats.equipment.armor.head = "Steel Helmet";
-  const quest = draft.quests.find((q) => q.id === 101);
-  if (quest) {
-    quest.status = "in-progress";
-  }
+  draft.player.inventory = draft.player.inventory.filter(
+    (i) => i.name !== "Old Boots",
+  );
+  draft.player.inventory.push({
+    id: 3,
+    name: "Phoenix Feather",
+    rarity: "legendary",
+  });
+  draft.player.stats.mana += 10;
 });
 ```
 
@@ -316,23 +337,28 @@ const newState = produce(gameState, (draft) => {
 layout: two-cols
 ---
 
-```ts{5-7,10-13}
+```ts{2-11,18,30}
 const newState = {
   ...gameState,
   player: {
     ...gameState.player,
-    inventory: gameState.player.inventory.map((item) => {
-      if (item.name === "Health Potion") {
-        return { ...item, quantity: item.quantity - 2 };
-      } else if (item.name === "Sword") {
-        return { ...item, durability: item.durability - 10 };
-      } else {
-        return item;
-      }
-    }),
+    inventory: [
+      ...gameState.player.inventory
+        .map((item) =>
+          item.name === "Health Potion"
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.name !== "Old Boots"),
+      {
+        id: 3,
+        name: "Phoenix Feather",
+        rarity: "legendary",
+      },
+    ],
     stats: {
       ...gameState.player.stats,
-      health: gameState.player.stats.health - 15,
+      mana: gameState.player.stats.mana + 10
       equipment: {
         ...gameState.player.stats.equipment,
         armor: {
@@ -342,9 +368,6 @@ const newState = {
       },
     },
   },
-  quests: gameState.quests.map((q) =>
-    q.id === 101 ? { ...q, status: "in-progress" } : q,
-  ),
 };
 ```
 
@@ -354,46 +377,51 @@ const newState = {
 const newState = produce(gameState, (draft) => {
   const potion = draft.player.inventory.find((i) => i.name === "Health Potion");
   if (potion) {
-    potion.quantity -= 2;
+    potion.quantity -= 1;
   }
-  const sword = draft.player.inventory.find((i) => i.name === "Sword");
-  if (sword) {
-    sword.durability -= 10;
-  }
-  draft.player.stats.health -= 15;
   draft.player.stats.equipment.armor.head = "Steel Helmet";
-  const quest = draft.quests.find((q) => q.id === 101);
-  if (quest) {
-    quest.status = "in-progress";
-  }
+  draft.player.inventory = draft.player.inventory.filter(
+    (i) => i.name !== "Old Boots",
+  );
+  draft.player.inventory.push({
+    id: 3,
+    name: "Phoenix Feather",
+    rarity: "legendary",
+  });
+  draft.player.stats.mana += 10;
 });
 ```
 
 <!--
-EN: She uses 2 health potions
+She uses a health potion
 -->
 
 ---
 layout: two-cols
 ---
 
-```ts{5,8-13}
+```ts{2-4,19-20,22-30}
 const newState = {
   ...gameState,
   player: {
     ...gameState.player,
-    inventory: gameState.player.inventory.map((item) => {
-      if (item.name === "Health Potion") {
-        return { ...item, quantity: item.quantity - 2 };
-      } else if (item.name === "Sword") {
-        return { ...item, durability: item.durability - 10 };
-      } else {
-        return item;
-      }
-    }),
+    inventory: [
+      ...gameState.player.inventory
+        .map((item) =>
+          item.name === "Health Potion"
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.name !== "Old Boots"),
+      {
+        id: 3,
+        name: "Phoenix Feather",
+        rarity: "legendary",
+      },
+    ],
     stats: {
       ...gameState.player.stats,
-      health: gameState.player.stats.health - 15,
+      mana: gameState.player.stats.mana + 10
       equipment: {
         ...gameState.player.stats.equipment,
         armor: {
@@ -403,58 +431,60 @@ const newState = {
       },
     },
   },
-  quests: gameState.quests.map((q) =>
-    q.id === 101 ? { ...q, status: "in-progress" } : q,
-  ),
 };
 ```
 
 ::right::
 
-```ts{6-9}
+```ts{6}
 const newState = produce(gameState, (draft) => {
   const potion = draft.player.inventory.find((i) => i.name === "Health Potion");
   if (potion) {
-    potion.quantity -= 2;
+    potion.quantity -= 1;
   }
-  const sword = draft.player.inventory.find((i) => i.name === "Sword");
-  if (sword) {
-    sword.durability -= 10;
-  }
-  draft.player.stats.health -= 15;
   draft.player.stats.equipment.armor.head = "Steel Helmet";
-  const quest = draft.quests.find((q) => q.id === 101);
-  if (quest) {
-    quest.status = "in-progress";
-  }
+  draft.player.inventory = draft.player.inventory.filter(
+    (i) => i.name !== "Old Boots",
+  );
+  draft.player.inventory.push({
+    id: 3,
+    name: "Phoenix Feather",
+    rarity: "legendary",
+  });
+  draft.player.stats.mana += 10;
 });
 ```
 
 <!--
-EN: Her sword loses 10 durability points
+She equips a new helmet
 -->
 
 ---
 layout: two-cols
 ---
 
-```ts{14-15,17-24}
+```ts{2-6,12,18,30}
 const newState = {
   ...gameState,
   player: {
     ...gameState.player,
-    inventory: gameState.player.inventory.map((item) => {
-      if (item.name === "Health Potion") {
-        return { ...item, quantity: item.quantity - 2 };
-      } else if (item.name === "Sword") {
-        return { ...item, durability: item.durability - 10 };
-      } else {
-        return item;
-      }
-    }),
+    inventory: [
+      ...gameState.player.inventory
+        .map((item) =>
+          item.name === "Health Potion"
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.name !== "Old Boots"),
+      {
+        id: 3,
+        name: "Phoenix Feather",
+        rarity: "legendary",
+      },
+    ],
     stats: {
       ...gameState.player.stats,
-      health: gameState.player.stats.health - 15,
+      mana: gameState.player.stats.mana + 10
       equipment: {
         ...gameState.player.stats.equipment,
         armor: {
@@ -464,58 +494,60 @@ const newState = {
       },
     },
   },
-  quests: gameState.quests.map((q) =>
-    q.id === 101 ? { ...q, status: "in-progress" } : q,
-  ),
 };
 ```
 
 ::right::
 
-```ts{11}
+```ts{7-9}
 const newState = produce(gameState, (draft) => {
   const potion = draft.player.inventory.find((i) => i.name === "Health Potion");
   if (potion) {
-    potion.quantity -= 2;
+    potion.quantity -= 1;
   }
-  const sword = draft.player.inventory.find((i) => i.name === "Sword");
-  if (sword) {
-    sword.durability -= 10;
-  }
-  draft.player.stats.health -= 15;
   draft.player.stats.equipment.armor.head = "Steel Helmet";
-  const quest = draft.quests.find((q) => q.id === 101);
-  if (quest) {
-    quest.status = "in-progress";
-  }
+  draft.player.inventory = draft.player.inventory.filter(
+    (i) => i.name !== "Old Boots",
+  );
+  draft.player.inventory.push({
+    id: 3,
+    name: "Phoenix Feather",
+    rarity: "legendary",
+  });
+  draft.player.stats.mana += 10;
 });
 ```
 
 <!--
-EN: She equips a new helmet
+She drops her old boots
 -->
 
 ---
 layout: two-cols
 ---
 
-```ts{14-16,24}
+```ts{2-6,13-21,29-30}
 const newState = {
   ...gameState,
   player: {
     ...gameState.player,
-    inventory: gameState.player.inventory.map((item) => {
-      if (item.name === "Health Potion") {
-        return { ...item, quantity: item.quantity - 2 };
-      } else if (item.name === "Sword") {
-        return { ...item, durability: item.durability - 10 };
-      } else {
-        return item;
-      }
-    }),
+    inventory: [
+      ...gameState.player.inventory
+        .map((item) =>
+          item.name === "Health Potion"
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.name !== "Old Boots"),
+      {
+        id: 3,
+        name: "Phoenix Feather",
+        rarity: "legendary",
+      },
+    ],
     stats: {
       ...gameState.player.stats,
-      health: gameState.player.stats.health - 15,
+      mana: gameState.player.stats.mana + 10
       equipment: {
         ...gameState.player.stats.equipment,
         armor: {
@@ -525,109 +557,33 @@ const newState = {
       },
     },
   },
-  quests: gameState.quests.map((q) =>
-    q.id === 101 ? { ...q, status: "in-progress" } : q,
-  ),
 };
 ```
 
 ::right::
 
-```ts{10}
+```ts{10-15}
 const newState = produce(gameState, (draft) => {
   const potion = draft.player.inventory.find((i) => i.name === "Health Potion");
   if (potion) {
-    potion.quantity -= 2;
+    potion.quantity -= 1;
   }
-  const sword = draft.player.inventory.find((i) => i.name === "Sword");
-  if (sword) {
-    sword.durability -= 10;
-  }
-  draft.player.stats.health -= 15;
   draft.player.stats.equipment.armor.head = "Steel Helmet";
-  const quest = draft.quests.find((q) => q.id === 101);
-  if (quest) {
-    quest.status = "in-progress";
-  }
+  draft.player.inventory = draft.player.inventory.filter(
+    (i) => i.name !== "Old Boots",
+  );
+  draft.player.inventory.push({
+    id: 3,
+    name: "Phoenix Feather",
+    rarity: "legendary",
+  });
+  draft.player.stats.mana += 10;
 });
 ```
 
 <!--
-EN: She takes 15 damage
+She finds a rare item that increases her mana
 -->
-
----
-layout: two-cols
----
-
-```ts{26-28}
-const newState = {
-  ...gameState,
-  player: {
-    ...gameState.player,
-    inventory: gameState.player.inventory.map((item) => {
-      if (item.name === "Health Potion") {
-        return { ...item, quantity: item.quantity - 2 };
-      } else if (item.name === "Sword") {
-        return { ...item, durability: item.durability - 10 };
-      } else {
-        return item;
-      }
-    }),
-    stats: {
-      ...gameState.player.stats,
-      health: gameState.player.stats.health - 15,
-      equipment: {
-        ...gameState.player.stats.equipment,
-        armor: {
-          ...gameState.player.stats.equipment.armor,
-          head: "Steel Helmet",
-        },
-      },
-    },
-  },
-  quests: gameState.quests.map((q) =>
-    q.id === 101 ? { ...q, status: "in-progress" } : q,
-  ),
-};
-```
-
-::right::
-
-```ts{12-15}
-const newState = produce(gameState, (draft) => {
-  const potion = draft.player.inventory.find((i) => i.name === "Health Potion");
-  if (potion) {
-    potion.quantity -= 2;
-  }
-  const sword = draft.player.inventory.find((i) => i.name === "Sword");
-  if (sword) {
-    sword.durability -= 10;
-  }
-  draft.player.stats.health -= 15;
-  draft.player.stats.equipment.armor.head = "Steel Helmet";
-  const quest = draft.quests.find((q) => q.id === 101);
-  if (quest) {
-    quest.status = "in-progress";
-  }
-});
-```
-
-<!--
-EN: Quest 101 is marked as "in progress"
--->
-
----
-
-If there's enough time left. Not mandatory at all.
-
-use-immer lib
-
-useState + Immer = useImmer
-
-useReducer + Immer = useImmerReducer
-
-Redux + Immer = just use produce
 
 ---
 layout: image
@@ -636,7 +592,7 @@ backgroundSize: cover
 ---
 
 <!--
-FR: Voilà, vous connaissez mon arme secrète. Maintenant c'est à vous de jouer.
+FR: Voilà, maintenant que vous connaissez cette arme, c'est à vous de jouer !
 
-EN: Now you know my secret weapon. It’s your turn to play.
+EN: Now you know this weapon. It’s your turn to play!
 -->
