@@ -1,18 +1,21 @@
 ---
-theme: default
+theme: ../theme-code-comparison
 title: Level Up Your State Management with Immer
 info: |
   Tired of endless .map, .filter, and deeply nested spread operators?
   In this lightning talk, I’ll show you how Immer makes immutable state management intuitive and easy to read.
+class: text-center
 ---
 
 # Michèle Legait
 
 Senior Frontend Developer
 
-<img src="/images/avatar.jpeg" style="width: 200px; height: 200px;" >
+<div flex flex-col flex-items-center mt-12 gap-3>
+  <img src="/images/avatar.jpeg" style="width: 200px; height: 200px;" >
 
-<img src="/images/datadog.png" style="width: 200px;" >
+  <img src="/images/datadog.png" style="width: 200px;" >
+</div>
 
 <!--
 FR: J'aimerais vous raconter une histoire.
@@ -54,7 +57,7 @@ image: images/aria.webp
 
 "Never update an object, always create a new version"
 
-<div v-click>
+<div mt-8 v-click>
 Change detection easy and predictable.
 
 ```ts
@@ -67,7 +70,7 @@ if (oldState !== newState) {
 
 </div>
 
-<div v-click>
+<div mt-8 v-click>
 Enables powerful DevTools features:
 
 - Compare before/after
@@ -88,6 +91,7 @@ layout: image-right
 image: images/aria.webp
 ---
 
+<div flex flex-items-center flex-justify-center h-full>
 ```ts
 const gameState = {
   player: {
@@ -109,12 +113,9 @@ const gameState = {
       },
     },
   },
-  quests: [
-    { id: 100, name: "Collect 10 Herbs", status: "completed" },
-    { id: 101, name: "Defeat the Goblin King", status: "not-started" },
-  ],
 };
 ```
+</div>
 
 <!--
 FR: Pendant longtemps, mon arme principale pour gérer les immutable states était ...
@@ -127,9 +128,14 @@ layout: image-right
 image: images/standard_weapon.webp
 ---
 
+<div flex flex-col flex-items-center flex-justify-center mt-14>
+
 # Spread operator
 
-...
+<div text-size-7xl font-mono>
+  ...
+</div>
+</div>
 
 <!--
 FR: ... le spread operator. Une lame qui demandait patience et précision.
@@ -141,6 +147,8 @@ EN: ... the spread operator. A blade that required patience and precision.
 layout: image-right
 image: images/standard_weapon.webp
 ---
+
+<div mt-14>
 
 ### Aria levels up
 
@@ -154,6 +162,8 @@ const newState = {
 };
 ```
 
+</div>
+
 <!--
 FR: ... Dégainons le spread operator ...
 
@@ -164,6 +174,8 @@ EN: ... Let's draw the spread operator ...
 layout: image-right
 image: images/used_weapon.webp
 ---
+
+<div mt-14>
 
 ### Aria changes weapon
 
@@ -183,6 +195,8 @@ const newState = {
 };
 ```
 
+</div>
+
 <!--
 FR: Mais au fond de moi, je savais que cette fidèle lame était loin d’être l’arme ultime...
 
@@ -194,17 +208,21 @@ layout: image-right
 image: images/awesome_weapon.webp
 ---
 
-<div v-click>
-  <img src="/images/immer.svg">
+<div flex flex-col flex-items-center flex-justify-center>
+  <div v-click w-full>
+    <img src="/images/immer.svg">
+  </div>
+
+<div>
+  <div v-click mt-4>
+  4.7kB (minified + gzipped)
+  </div>
+
+  <div v-click mt-4><code>produce</code></div>
+
+  <div v-click mt-4>2016</div>
+  </div>
 </div>
-
-<div v-click>
-4.7kB (minified + gzipped)
-</div>
-
-<div v-click><code>produce</code></div>
-
-<div v-click>2016</div>
 
 <!--
 FR: Et puis, il y a quelques mois, j'ai rejoint une nouvelle guilde : Datadog.
@@ -233,7 +251,7 @@ EN: The basic idea is that with Immer you will apply all your changes to a tempo
 -->
 
 ---
-layout: two-cols
+layout: two-cols-code
 ---
 
 ```ts
@@ -267,15 +285,23 @@ layout: image-right
 image: images/aria-battle.webp
 ---
 
+<div mt-14>
+
 ### Aria gets ready for battle
+
+<div mt-6>
 
 - She uses a health potion
 - She equips a new helmet
 - She drops her old boots
 - She finds a rare item that increases her mana
 
+</div>
+
+</div>
+
 ---
-layout: two-cols
+layout: two-cols-code
 ---
 
 ```ts
@@ -316,7 +342,9 @@ const newState = {
 
 ```ts
 const newState = produce(gameState, (draft) => {
-  const potion = draft.player.inventory.find((i) => i.name === "Health Potion");
+  const potion = draft.player.inventory.find(
+    (i) => i.name === "Health Potion"
+  );
   if (potion) {
     potion.quantity -= 1;
   }
@@ -334,7 +362,7 @@ const newState = produce(gameState, (draft) => {
 ```
 
 ---
-layout: two-cols
+layout: two-cols-code
 ---
 
 ```ts{2-11,18,30}
@@ -373,9 +401,11 @@ const newState = {
 
 ::right::
 
-```ts{2-5}
+```ts{2-7}
 const newState = produce(gameState, (draft) => {
-  const potion = draft.player.inventory.find((i) => i.name === "Health Potion");
+  const potion = draft.player.inventory.find(
+    (i) => i.name === "Health Potion"
+  );
   if (potion) {
     potion.quantity -= 1;
   }
@@ -397,7 +427,7 @@ She uses a health potion
 -->
 
 ---
-layout: two-cols
+layout: two-cols-code
 ---
 
 ```ts{2-4,19-20,22-30}
@@ -436,9 +466,11 @@ const newState = {
 
 ::right::
 
-```ts{6}
+```ts{8}
 const newState = produce(gameState, (draft) => {
-  const potion = draft.player.inventory.find((i) => i.name === "Health Potion");
+  const potion = draft.player.inventory.find(
+    (i) => i.name === "Health Potion"
+  );
   if (potion) {
     potion.quantity -= 1;
   }
@@ -460,7 +492,7 @@ She equips a new helmet
 -->
 
 ---
-layout: two-cols
+layout: two-cols-code
 ---
 
 ```ts{2-6,12,18,30}
@@ -499,9 +531,11 @@ const newState = {
 
 ::right::
 
-```ts{7-9}
+```ts{9-11}
 const newState = produce(gameState, (draft) => {
-  const potion = draft.player.inventory.find((i) => i.name === "Health Potion");
+  const potion = draft.player.inventory.find(
+    (i) => i.name === "Health Potion"
+  );
   if (potion) {
     potion.quantity -= 1;
   }
@@ -523,10 +557,10 @@ She drops her old boots
 -->
 
 ---
-layout: two-cols
+layout: two-cols-code
 ---
 
-```ts{2-6,13-21,29-30}
+```ts{2-6,13-18,30}
 const newState = {
   ...gameState,
   player: {
@@ -562,9 +596,11 @@ const newState = {
 
 ::right::
 
-```ts{10-15}
+```ts{12-16}
 const newState = produce(gameState, (draft) => {
-  const potion = draft.player.inventory.find((i) => i.name === "Health Potion");
+  const potion = draft.player.inventory.find(
+      (i) => i.name === "Health Potion"
+  );
   if (potion) {
     potion.quantity -= 1;
   }
@@ -582,7 +618,73 @@ const newState = produce(gameState, (draft) => {
 ```
 
 <!--
-She finds a rare item that increases her mana
+She finds a rare item ...
+-->
+
+
+---
+layout: two-cols-code
+---
+
+```ts{2-4,19-21,29-30}
+const newState = {
+  ...gameState,
+  player: {
+    ...gameState.player,
+    inventory: [
+      ...gameState.player.inventory
+        .map((item) =>
+          item.name === "Health Potion"
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.name !== "Old Boots"),
+      {
+        id: 3,
+        name: "Phoenix Feather",
+        rarity: "legendary",
+      },
+    ],
+    stats: {
+      ...gameState.player.stats,
+      mana: gameState.player.stats.mana + 10
+      equipment: {
+        ...gameState.player.stats.equipment,
+        armor: {
+          ...gameState.player.stats.equipment.armor,
+          head: "Steel Helmet",
+        },
+      },
+    },
+  },
+};
+```
+
+::right::
+
+```ts{17}
+const newState = produce(gameState, (draft) => {
+  const potion = draft.player.inventory.find(
+      (i) => i.name === "Health Potion"
+  );
+  if (potion) {
+    potion.quantity -= 1;
+  }
+  draft.player.stats.equipment.armor.head = "Steel Helmet";
+  draft.player.inventory = draft.player.inventory.filter(
+    (i) => i.name !== "Old Boots",
+  );
+  draft.player.inventory.push({
+    id: 3,
+    name: "Phoenix Feather",
+    rarity: "legendary",
+  });
+  draft.player.stats.mana += 10;
+});
+```
+
+<!--
+... that increases her mana
 -->
 
 ---

@@ -22,5 +22,5 @@
   "prettier.configPath": ".prettierrc",
   "prettier.documentSelectors": ["*.md"],
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": null
 }
