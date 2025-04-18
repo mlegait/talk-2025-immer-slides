@@ -684,6 +684,41 @@ const newState = produce(gameState, (draft) => {
 -->
 
 ---
+layout: two-cols
+---
+
+```ts {monaco}
+import { produce } from "immer";
+import { gameState } from './state';
+
+const newState = produce(gameState, (draft) => {
+  const potion = draft.player.inventory.find(
+      (i) => i.name === "Health Potion"
+  );
+  if (potion) {
+    potion.quantity -= 1;
+  }
+  draft.player.stats.equipment.armor.head = "Steel Helmet";
+  draft.player.inventory = draft.player.inventory.filter(
+    (i) => i.name !== "Old Boots",
+  );
+  draft.player.inventory.push({
+    id: 3,
+    name: "Phoenix Feather",
+    rarity: "legendary",
+    quantity: 1
+  });
+  draft.player.stats.mana += 10;
+});
+```
+
+::right::
+
+<div flex flex-justify-center w-full mt-30>
+  <img src="/images/typescript.png" style="width: 150px; height: 150px;" >
+</div>
+
+---
 layout: image
 image: images/final_artifact.webp
 backgroundSize: cover
