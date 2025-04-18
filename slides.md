@@ -4,17 +4,25 @@ title: Level Up Your State Management with Immer
 info: |
   Tired of endless .map, .filter, and deeply nested spread operators?
   In this lightning talk, I’ll show you how Immer makes immutable state management intuitive and easy to read.
-class: text-center
+layout: two-cols
 ---
+
+<div flex flex-col flex-items-center mt-12 gap-3>
 
 # Michèle Legait
 
 Senior Frontend Developer
 
-<div flex flex-col flex-items-center mt-12 gap-3>
-  <img src="/images/avatar.jpeg" style="width: 200px; height: 200px;" >
+  <img src="/images/avatar.jpeg" rd-md style="width: 200px; height: 200px;" >
 
   <img src="/images/datadog.png" style="width: 200px;" >
+</div>
+
+::right::
+
+<div flex flex-col flex-items-center flex-justify-center w-full h-full gap-8 mt-10>
+  <div v-click><img src="/images/rivieradev.png" style="height: 150px;" ></div>
+  <div v-click><img src="/images/jssophia.png" rounded-full style="height: 150px;" ></div>
 </div>
 
 <!--
