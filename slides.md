@@ -97,7 +97,10 @@ layout: image-right
 image: images/aria.webp
 ---
 
-<div flex flex-items-center flex-justify-center h-full>
+<div mt-14>
+
+### Aria
+
 ```ts
 const gameState = {
   player: {
@@ -106,6 +109,7 @@ const gameState = {
     inventory: [
       { id: 1, name: "Health Potion", quantity: 3 },
       { id: 2, name: "Traveler’s Map" },
+      { id: 3, name: "Old boots" },
     ],
     stats: {
       health: 87,
@@ -121,6 +125,7 @@ const gameState = {
   },
 };
 ```
+
 </div>
 
 <!--
@@ -218,7 +223,6 @@ image: images/awesome_weapon.webp
   <div v-click w-full>
     <img src="/images/immer.svg">
   </div>
-
 <div>
   <div v-click mt-4>
   4.7kB (minified + gzipped)
@@ -228,8 +232,6 @@ image: images/awesome_weapon.webp
 
   <div v-click mt-4>2016</div>
   </div>
-
-  <div v-click mt-10><a href="https://immerjs.github.io/immer/">https://immerjs.github.io/immer/</a></div>
 </div>
 
 <!--
@@ -260,6 +262,10 @@ EN: The basic idea is that with Immer you will apply all your changes to a tempo
 layout: two-cols-code
 ---
 
+<div style="position: absolute; z-index: 1; top: 5px; left: 23%;">
+<img src="/images/JS.png" style="height: 50px;" >
+</div>
+
 ```ts
 const newState = {
   ...gameState,
@@ -279,6 +285,11 @@ const newState = {
 ::right::
 
 <div v-click>
+
+<div style="position: absolute; z-index: 1; top: 5px; left: 71%;">
+<img src="/images/immer_logo.png" style="height: 46px;" >
+</div>
+
 ```ts
 const newState = produce(gameState, (draft) => {
   draft.player.stats.equipment.weapon = "Flaming Sword";
@@ -309,6 +320,14 @@ image: images/aria-battle.webp
 ---
 layout: two-cols-code
 ---
+
+<div style="position: absolute; z-index: 1; top: 5px; left: 23%;">
+<img src="/images/JS.png" style="height: 50px;" >
+</div>
+
+<div style="position: absolute; z-index: 1; top: 5px; left: 71%;">
+<img src="/images/immer_logo.png" style="height: 46px;" >
+</div>
 
 ```ts
 const newState = {
@@ -370,6 +389,14 @@ const newState = produce(gameState, (draft) => {
 ---
 layout: two-cols-code
 ---
+
+<div style="position: absolute; z-index: 1; top: 5px; left: 23%;">
+<img src="/images/JS.png" style="height: 50px;" >
+</div>
+
+<div style="position: absolute; z-index: 1; top: 5px; left: 71%;">
+<img src="/images/immer_logo.png" style="height: 46px;" >
+</div>
 
 ```ts{2-11,18,30}
 const newState = {
@@ -436,6 +463,14 @@ She uses a health potion
 layout: two-cols-code
 ---
 
+<div style="position: absolute; z-index: 1; top: 5px; left: 23%;">
+<img src="/images/JS.png" style="height: 50px;" >
+</div>
+
+<div style="position: absolute; z-index: 1; top: 5px; left: 71%;">
+<img src="/images/immer_logo.png" style="height: 46px;" >
+</div>
+
 ```ts{2-4,19-20,22-30}
 const newState = {
   ...gameState,
@@ -501,6 +536,14 @@ She equips a new helmet
 layout: two-cols-code
 ---
 
+<div style="position: absolute; z-index: 1; top: 5px; left: 23%;">
+<img src="/images/JS.png" style="height: 50px;" >
+</div>
+
+<div style="position: absolute; z-index: 1; top: 5px; left: 71%;">
+<img src="/images/immer_logo.png" style="height: 46px;" >
+</div>
+
 ```ts{2-6,12,18,30}
 const newState = {
   ...gameState,
@@ -565,6 +608,14 @@ She drops her old boots
 ---
 layout: two-cols-code
 ---
+
+<div style="position: absolute; z-index: 1; top: 5px; left: 23%;">
+<img src="/images/JS.png" style="height: 50px;" >
+</div>
+
+<div style="position: absolute; z-index: 1; top: 5px; left: 71%;">
+<img src="/images/immer_logo.png" style="height: 46px;" >
+</div>
 
 ```ts{2-6,13-18,30}
 const newState = {
@@ -632,6 +683,14 @@ She finds a rare item ...
 layout: two-cols-code
 ---
 
+<div style="position: absolute; z-index: 1; top: 5px; left: 23%;">
+<img src="/images/JS.png" style="height: 50px;" >
+</div>
+
+<div style="position: absolute; z-index: 1; top: 5px; left: 71%;">
+<img src="/images/immer_logo.png" style="height: 46px;" >
+</div>
+
 ```ts{2-4,19-21,29-30}
 const newState = {
   ...gameState,
@@ -697,6 +756,10 @@ const newState = produce(gameState, (draft) => {
 layout: two-cols
 ---
 
+<div style="position: absolute; z-index: 1; top: 5px; left: 23%;">
+<img src="/images/immer_logo.png" style="height: 46px;" >
+</div>
+
 ```ts {monaco}
 import { produce } from "immer";
 import { gameState } from './state';
@@ -727,6 +790,16 @@ const newState = produce(gameState, (draft) => {
 <div flex flex-justify-center w-full mt-30>
   <img src="/images/typescript.png" style="width: 150px; height: 150px;" >
 </div>
+
+---
+layout: image-right
+image: images/final_artifact2.webp
+---
+
+<div w-full mt-10>
+  <img src="/images/immer.svg">
+</div>
+<div text-align-center text-size-2xl mt-10><a href="https://immerjs.github.io/immer/">https://immerjs.github.io/immer/</a></div>
 
 ---
 layout: image
