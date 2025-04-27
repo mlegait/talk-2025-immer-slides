@@ -4,6 +4,7 @@ title: Level Up Your State Management with Immer
 info: |
   Tired of endless .map, .filter, and deeply nested spread operators?
   In this lightning talk, I’ll show you how Immer makes immutable state management intuitive and easy to read.
+download: true
 layout: two-cols
 ---
 
