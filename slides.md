@@ -793,19 +793,13 @@ const newState = produce(gameState, (draft) => {
 
 ---
 layout: image-right
-image: images/final_artifact2.webp
+image: images/final_artifact.webp
 ---
 
 <div w-full mt-10>
   <img src="/images/immer.svg">
 </div>
 <div text-align-center text-size-2xl mt-10><a href="https://immerjs.github.io/immer/">https://immerjs.github.io/immer/</a></div>
-
----
-layout: image
-image: images/final_artifact.webp
-backgroundSize: cover
----
 
 <!--
 FR: Voilà, maintenant que vous connaissez cette arme, c'est à vous de jouer !
