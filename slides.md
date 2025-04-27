@@ -34,7 +34,7 @@ EN: I would like to tell you a story.
 
 ---
 layout: image
-image: images/landscape.webp
+image: /images/landscape.webp
 backgroundSize: cover
 transition: fade
 ---
@@ -47,7 +47,7 @@ EN: Over the years as a frontend developer, I have travelled across the lands of
 
 ---
 layout: image
-image: images/landscape_React_Redux.png
+image: /images/landscape_React_Redux.png
 backgroundSize: cover
 ---
 
@@ -59,7 +59,7 @@ EN: And throughout my many quests, I have often found myself facing an ancient a
 
 ---
 layout: image-right
-image: images/aria.webp
+image: /images/aria.webp
 ---
 
 # Immutable state
@@ -95,7 +95,7 @@ EN: ... immutable state.
 
 ---
 layout: image-right
-image: images/aria.webp
+image: /images/aria.webp
 ---
 
 <div mt-14>
@@ -137,7 +137,7 @@ EN: For a long time, my main weapon to manage immutable states was ...
 
 ---
 layout: image-right
-image: images/standard_weapon.webp
+image: /images/standard_weapon.webp
 ---
 
 <div flex flex-col flex-items-center flex-justify-center mt-14>
@@ -157,7 +157,7 @@ EN: ... the spread operator.
 
 ---
 layout: image-right
-image: images/standard_weapon.webp
+image: /images/standard_weapon.webp
 ---
 
 <div mt-14>
@@ -184,7 +184,7 @@ EN: ... Let's draw the spread operator ...
 
 ---
 layout: image-right
-image: images/used_weapon.webp
+image: /images/used_weapon.webp
 ---
 
 <div mt-14>
@@ -217,7 +217,7 @@ EN: But deep down, I knew that this blade was far from being the ultimate weapon
 
 ---
 layout: image-right
-image: images/awesome_weapon.webp
+image: /images/awesome_weapon.webp
 ---
 
 <div flex flex-col flex-items-center flex-justify-center>
@@ -249,7 +249,7 @@ light — easy to wield (with a single function to master: produce) — reliable
 
 ---
 layout: image
-image: images/immer-schema.png
+image: /images/immer-schema.png
 backgroundSize: contain
 ---
 
@@ -300,7 +300,7 @@ const newState = produce(gameState, (draft) => {
 
 ---
 layout: image-right
-image: images/aria-battle.webp
+image: /images/aria-battle.webp
 ---
 
 <div mt-14>
@@ -794,7 +794,7 @@ const newState = produce(gameState, (draft) => {
 
 ---
 layout: image-right
-image: images/final_artifact.webp
+image: /images/final_artifact.webp
 ---
 
 <div w-full mt-10>
