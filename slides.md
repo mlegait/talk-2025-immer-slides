@@ -1,5 +1,5 @@
 ---
-theme: ../theme-code-comparison
+theme: ./theme
 title: Level Up Your State Management with Immer
 info: |
   Tired of endless .map, .filter, and deeply nested spread operators?
